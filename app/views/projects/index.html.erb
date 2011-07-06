@@ -4,7 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Content</th>
-    <th>User</th>
+    <th>User email </th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +14,7 @@
   <tr>
     <td><%= project.name %></td>
     <td><%= project.content %></td>
-    <td><%= project.user_id %></td>
+    <td><%= project.user.email %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>

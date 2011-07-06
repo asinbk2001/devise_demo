@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!	
+  before_filter :authenticate_user!, :except => [:show, :index]	
+  @user_email
   # GET /projects
   # GET /projects.xml
   def index
@@ -81,4 +82,8 @@ class ProjectsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  def get_user_email(user_id)
+  	@user = User.find(params[:user_id])
+  	@user_email = @user.email
+	end
 end
