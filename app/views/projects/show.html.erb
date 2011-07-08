@@ -2,19 +2,25 @@
 
 <p>
   <b>Name:</b>
-  <%= @project.name %>
+  <%= current_object.name %>
 </p>
 
 <p>
   <b>Content:</b>
-  <%= @project.content %>
+  <%= current_object.content %>
 </p>
 
 <p>
   <b>User email :</b>
-  <%= @project.user.email %>
+  <%= current_object.user.email %>
 </p>
 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(current_object) %> |
 <%= link_to 'Back', projects_path %>
+<br />
+<p>
+<b>Posts:</b>
+</p>
+<%= link_to 'List Posts', posts_path %> |
+<%= link_to 'New Post', new_post_path %> 

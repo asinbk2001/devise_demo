@@ -1,0 +1,19 @@
+
+[indentation]
+indent_width=4
+indent_type=1
+indent_hard_tab_width=8
+detect_indent=false
+indent_mode=2
+
+[project]
+name=app_devise
+base_path=/home/kevin/rails_project/app_devise
+
+[long line marker]
+long_line_behaviour=1
+long_line_column=72
+
+[files]
+current_page=0
+FILE_NAME_0=1123;Conf;0;16;1;1;0;/home/kevin/.config/geany/filetype_extensions.conf;0;4

@@ -1,19 +1,20 @@
+<% unless flash[:error].nil? %>
+<div class="error"><%= flash[:error] %></div>
+<% end %>
 <h1>Listing projects</h1>
 
 <table>
   <tr>
     <th>Name</th>
-    <th>Content</th>
     <th>User email </th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @projects.each do |project| %>
+<% current_objects.each do |project| %>
   <tr>
     <td><%= project.name %></td>
-    <td><%= project.content %></td>
     <td><%= project.user.email %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>

@@ -1,6 +1,22 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]	
-  @user_email
+	before_filter :check_permission, :only => [:show, :edit, :update, :destroy]
+
+	make_resourceful do
+		actions :all
+		before :create do
+			current_object.user_id = current_user.id
+		end
+	end
+
+	def check_permission
+		if current_user.id != current_object.user_id
+			flash[:error] = 'Permission denied!'
+			redirect_to root_path
+		end
+	end
+
+=begin	
   # GET /projects
   # GET /projects.xml
   def index
@@ -37,6 +53,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    #if @project.user_id != current_user.id
+    #	@project = nil
+    #end
   end
 
   # POST /projects
@@ -59,16 +78,21 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.xml
   def update
     @project = Project.find(params[:id])
-
-    respond_to do |format|
-      if @project.update_attributes(params[:project])
-        format.html { redirect_to(@project, :notice => 'Project was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
-      end
-    end
+		#if @project.user_id != current_user.id
+    	#render :action => 'index'
+      #render_to :xml => @project.errors, :status => :unprocessable_entity
+  	#else
+	    respond_to do |format|
+	    	
+	      if @project.update_attributes(params[:project])
+	        format.html { redirect_to(@project, :notice => 'Project was successfully updated.') }
+	        format.xml  { head :ok }
+	      else
+	        format.html { render :action => "edit" }
+	        format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
+	      end
+	    end
+	  #end  
   end
 
   # DELETE /projects/1
@@ -81,9 +105,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to(projects_url) }
       format.xml  { head :ok }
     end
-  end
-  def get_user_email(user_id)
-  	@user = User.find(params[:user_id])
-  	@user_email = @user.email
-	end
+  end  
+=end		
 end
