@@ -1,11 +1,15 @@
 AppDevise::Application.routes.draw do
 
-  resources :posts
+  resources :tasks
+
+  #resources :posts
 
   #resources :projects
 
   devise_for :users
-  resources :projects
+  resources :projects do
+	resources :posts  #su dung nested form and nested resource de dieu khien cac route
+	end
   root  :controller => 'projects', :action => 'index'
   # The priority is based upon ordeion:
   # first created -> highest priority.

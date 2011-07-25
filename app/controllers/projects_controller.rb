@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]	
-	before_filter :check_permission, :only => [:show, :edit, :update, :destroy]
-
+	before_filter :check_permission, :only => [:edit, :update, :destroy]
+	#inherited resource
 	make_resourceful do
 		actions :all
 		before :create do
